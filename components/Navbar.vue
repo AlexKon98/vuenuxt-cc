@@ -1,17 +1,22 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Nuxt SSR</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <nuxt-link exact no-prefetch active-class="active" class="nav-link" to="/">Home</nuxt-link>
+          </li>
+          <li class="nav-item">
+            <nuxt-link no-prefetch active-class="active" class="nav-link" to="/about">About</nuxt-link>
+          </li>
+          <li class="nav-item">
+            <nuxt-link no-prefetch active-class="active" class="nav-link" to="/users">Users</nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 </template>
 
 <script>
