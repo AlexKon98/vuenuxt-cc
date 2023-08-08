@@ -30,7 +30,16 @@ export default {
   data() {
     return {
       listView: 2,
-      users: [],
+    }
+  },
+  async fetch({store}) {
+    if (store.getters['users/users'].length === 0) {
+      await store.dispatch('users/fetch');
+    }
+  },
+  computed: {
+    users() {
+      return this.$store.getters['users/users'];
     }
   },
   methods: {
@@ -41,9 +50,6 @@ export default {
       this.listView = val;
     }
   },
-  async mounted() {
-    this.users = await this.$axios.$get('https://jsonplaceholder.typicode.com/users');
-  }
 }
 </script>
 
