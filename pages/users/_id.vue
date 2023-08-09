@@ -5,7 +5,7 @@
       <img src="@/assets/user1.png" alt="Нет фото" v-else>
       <div>
         <h1 class="title">{{ user.name }}</h1>
-        <a :href="user.website">{{ user.website }}</a>
+        <a :href="'https://www.' + user.website">{{ user.website }}</a>
       </div>
       <hr>
       <h3 class="user__email">
@@ -22,17 +22,16 @@
 
 <script>
 export default {
-  data() {
-    return {
-      user: {},
-    }
-  },
   validate({params}) {
     return /^\d+$/.test(params.id);
   },
-  async asyncData({$axios, params}) {
-    const user = await $axios.$get('https://jsonplaceholder.typicode.com/users/' + params.id);
-    return { user };
+  async fetch({store, params}) {
+    await store.dispatch('user/fetch', params.id);
+  },
+  computed: {
+    user() {
+      return this.$store.getters['user/user'];
+    }
   },
 }
 </script>

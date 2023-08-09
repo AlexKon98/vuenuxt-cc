@@ -13,8 +13,8 @@ export const actions = {
     const users = await this.$axios.$get('https://jsonplaceholder.typicode.com/users');
     commit('setUsers', users);
   }
-}
+};
 
 export const getters = {
   users: s => s.users,
-}
+};
