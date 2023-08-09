@@ -7,7 +7,7 @@
       <h1 class="title">Login form</h1>
       <form class="form login-form" @submit.prevent="onSubmit">
         <div class="form-group">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" v-model="email">
         </div>
         <p>
           <nuxt-link to="/">To home page</nuxt-link>
@@ -22,10 +22,25 @@
 export default {
   name: 'LoginPage',
   layout: 'empty',
+  data() {
+    return {
+      email: '',
+      error: '',
+    }
+  },
+  watch: {
+    error(v) {
+      console.log(v);
+    }
+  },
   methods: {
     onSubmit() {
-      this.$store.dispatch('login');
-      this.$router.push('/');
+      if(this.email.length > 0) {
+        this.$store.dispatch('login');
+        this.$router.push('/');
+      } else {
+        this.error = 'Введите ваш логин';
+      }
     }
   }
 }
