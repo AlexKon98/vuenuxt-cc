@@ -28,7 +28,7 @@ export default {
     else redirect(301, '/');
   },
   async fetch({store, params}) {
-    await store.dispatch('user/fetch', params.id);
+    await store.dispatch('user/fetchUser', params.id);
   },
   computed: {
     user() {
