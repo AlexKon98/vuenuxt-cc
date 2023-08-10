@@ -22,8 +22,10 @@
 
 <script>
 export default {
-  validate({params}) {
-    return /^\d+$/.test(params.id);
+  validate({params, redirect}) {
+    let match = /^\d+$/.test(params.id);
+    if (match) return match;
+    else redirect(301, '/');
   },
   async fetch({store, params}) {
     await store.dispatch('user/fetch', params.id);
